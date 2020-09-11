@@ -21,7 +21,7 @@
             ?>
                 <tr>
                     <td><?= $nomor + 1; ?></td>
-                    <td><?= $kelass['namaKelas']; ?></td>
+                    <td><a href="<?= base_url('/kelas/tambah') . '/' . $kelass['idKelas']; ?>"><?= $kelass['namaKelas']; ?></a></td>
                     <td><?= $kelass['jenisOrderId']; ?></td>
                     <td><?= $kelass['angkatan']; ?></td>
                     <td>0 Siswa</td>

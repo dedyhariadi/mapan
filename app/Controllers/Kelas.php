@@ -10,13 +10,16 @@ use App\Models\PasisModel;
 
 class Kelas extends BaseController
 {
-    public function tambah()
+    public function tambah($idKelas = '')
     {
-
         $KelasModel = new KelasModel();
         $JenisOrderModel = new JenisOrderModel();
         $KertasModel = new KertasModel();
         $PasisModel = new PasisModel();
+
+
+
+
 
         d($this->request->getVar());
 
@@ -39,11 +42,13 @@ class Kelas extends BaseController
                 return redirect()->to(base_url('/'));
             endif;
         else :
+
             $data = [
                 'kelas' => $KelasModel->findAll(),
                 'jenisOrder' => $JenisOrderModel->findAll(),
                 'kertas' => $KertasModel->findAll(),
-                'pasis' => $PasisModel->findAll()
+                'pasis' => $PasisModel->findAll(),
+                'idKelas' => $idKelas
             ];
 
             echo view('templates/header');

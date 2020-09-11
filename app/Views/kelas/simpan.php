@@ -25,6 +25,15 @@
                 'style'     => 'width:60%',
                 'class'     => 'form-control'
             ];
+
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $data += ['value' => $kelass['namaKelas']];
+                    endif;
+                endforeach;
+            endif;
+
             echo form_input($data);
             ?>
         </div>
@@ -49,6 +58,15 @@
                 'style'     => 'width:14%',
                 'class'     => 'form-control'
             ];
+
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $data += ['value' => $kelass['angkatan']];
+                    endif;
+                endforeach;
+            endif;
+
             echo form_input($data);
             ?>
         </div>
@@ -71,7 +89,16 @@
                 $jenisPesanan[$jenisOrders['idJenisOrder']] = $jenisOrders['nama'];
             endforeach;
 
-            echo form_dropdown('jenisOrderId', $jenisPesanan, '', 'class="custom-select menupilih"');
+
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $jenisOrderPilih = $kelass['jenisOrderId'];
+                    endif;
+                endforeach;
+            endif;
+
+            echo form_dropdown('jenisOrderId', $jenisPesanan, isset($jenisOrderPilih) ? $jenisOrderPilih : '', 'class="custom-select menupilih"');
 
             ?>
         </div>
@@ -93,7 +120,16 @@
                 $isiKertas[$kertass['idKertas']] = $kertass['warnaKertas'];
             endforeach;
 
-            echo form_dropdown('kertas', $isiKertas, '', 'class="custom-select menupilih"');
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $kertasPilih = $kelass['kertasId'];
+                    endif;
+                endforeach;
+            endif;
+
+
+            echo form_dropdown('kertas', $isiKertas, isset($kertasPilih) ? $kertasPilih : '', 'class="custom-select menupilih"');
             ?>
         </div>
     </div>
@@ -113,7 +149,17 @@
                 $isiPasis[$pasiss['idPasis']] = $pasiss['nama'];
             endforeach;
 
-            echo form_dropdown('pasisId', $isiPasis, '', 'class="custom-select menupilih"');
+
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $ketuaPilih = $kelass['ketua'];
+                    endif;
+                endforeach;
+            endif;
+
+
+            echo form_dropdown('pasisId', $isiPasis, isset($ketuaPilih) ? $ketuaPilih : '', 'class="custom-select menupilih"');
             ?>
         </div>
     </div>
@@ -131,18 +177,28 @@
             helper('fungsiku');
 
             $data = [
-                'name'      => 'angkatan',
+                'name'      => 'tglUkurAwal',
                 // 'placeholder'     => 'entry kelas',
                 'maxlength' => '3',
                 'size'      => '5',
-                'style'     => 'width:14%',
-                'class'     => 'form-control'
+                'style'     => 'width:50%',
+                'class'     => 'form-control tglpicker',
+                'autocomplete' => 'off'
             ];
 
-            echo form_input('tglUkurAwal', ctktanggal(date('dmy')), ['class' => 'form-control tglpicker']); ?>
+            if ($idKelas != '') :
+                foreach ($kelas as $kelass) :
+                    if ($kelass['idKelas'] == $idKelas) :
+                        $data += ['value' => ctktanggal($kelass['tglUkurAwal'])];
+                    endif;
+                endforeach;
+            endif;
+
+            echo form_input($data);
+            // echo form_input('tglUkurAwal', ctktanggal(date('dmy')), ['class' => 'form-control tglpicker']); 
+            ?>
 
         </div>
-        <!-- akhir baris Tgl ukur awal -->
 
     </div>
     <!-- akhir baris Tgl ukur awal -->
