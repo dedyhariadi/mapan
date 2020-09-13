@@ -19,10 +19,15 @@
             helper('fungsiku');
             foreach ($kelas as $nomor => $kelass) :
             ?>
-                <tr>
+                <tr onclick="window.open('<?= base_url('kelas/detail') . '/' . $kelass['idKelas'] ?>','_self', 'location=yes,height=600,width=800,scrollbars=yes,status=yes');return false;">
+
                     <td><?= $nomor + 1; ?></td>
                     <td><a href="<?= base_url('/kelas/tambah') . '/' . $kelass['idKelas']; ?>"><?= $kelass['namaKelas']; ?></a></td>
-                    <td><?= $kelass['jenisOrderId']; ?></td>
+                    <td><?php
+                        foreach ($jenisOrder as $jenisOrders) :
+                            echo $kelass['jenisOrderId'] == $jenisOrders['idJenisOrder'] ? $jenisOrders['nama'] : '';
+                        endforeach;
+                        ?></td>
                     <td><?= $kelass['angkatan']; ?></td>
                     <td>0 Siswa</td>
                     <td><?= ctktanggal($kelass['tglUkurAwal']); ?></td>

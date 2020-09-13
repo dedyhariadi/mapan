@@ -185,13 +185,18 @@
                 'class'     => 'form-control tglpicker',
                 'autocomplete' => 'off'
             ];
-
+            $tanda = false;
             if ($idKelas != '') :
                 foreach ($kelas as $kelass) :
                     if ($kelass['idKelas'] == $idKelas) :
                         $data += ['value' => ctktanggal($kelass['tglUkurAwal'])];
+                        $tanda = true;
                     endif;
                 endforeach;
+            endif;
+
+            if (!$tanda) :
+                $data += ['value' => ctktanggal(date('dmy'))];
             endif;
 
             echo form_input($data);

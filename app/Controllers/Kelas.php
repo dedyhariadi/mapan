@@ -17,17 +17,15 @@ class Kelas extends BaseController
         $KertasModel = new KertasModel();
         $PasisModel = new PasisModel();
 
-
-
-
-
         d($this->request->getVar());
 
         if ($this->request->getVar()) :
             helper('fungsiku');
+
             $tglTeksKeAngka = tgltekstoangka($this->request->getVar('tglUkurAwal'));
 
             $simpan = [
+                'idKelas' => $idKelas,
                 'namaKelas' => $this->request->getVar('namaKelas'),
                 'angkatan' => $this->request->getVar('angkatan'),
                 'ketua' => $this->request->getVar('pasisId'),
@@ -55,5 +53,26 @@ class Kelas extends BaseController
             echo view('kelas/simpan', $data);
             echo view('templates/footer');
         endif;
+    }
+
+    public function detail($idKelas = '')
+    {
+
+        $KelasModel = new KelasModel();
+        $JenisOrderModel = new JenisOrderModel();
+        $KertasModel = new KertasModel();
+        $PasisModel = new PasisModel();
+
+        $data = [
+            'kelas' => $KelasModel->findAll(),
+            'jenisOrder' => $JenisOrderModel->findAll(),
+            'kertas' => $KertasModel->findAll(),
+            'pasis' => $PasisModel->findAll(),
+            'idKelas' => $idKelas
+        ];
+        
+        echo view('templates/header');
+        echo view('kelas/detail', $data);
+        echo view('templates/footer');
     }
 }

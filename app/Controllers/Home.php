@@ -15,7 +15,10 @@ class Home extends BaseController
 		$KelasModel = new KelasModel();
 		$JenisOrderModel = new JenisOrderModel();
 
-		$data['kelas'] = $KelasModel->findAll();
+		$data = [
+			'kelas' => $KelasModel->findAll(),
+			'jenisOrder' => $JenisOrderModel->findAll(),
+		];
 		echo view('templates/header');
 		echo view('home/index', $data);
 		echo view('templates/footer');
