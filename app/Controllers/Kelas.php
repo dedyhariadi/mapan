@@ -7,6 +7,7 @@ use App\Models\KelasModel;
 use App\Models\JenisOrderModel;
 use App\Models\KertasModel;
 use App\Models\PasisModel;
+use App\Models\UkuranModel;
 
 class Kelas extends BaseController
 {
@@ -62,15 +63,17 @@ class Kelas extends BaseController
         $JenisOrderModel = new JenisOrderModel();
         $KertasModel = new KertasModel();
         $PasisModel = new PasisModel();
+        $UkuranModel = new UkuranModel();
 
         $data = [
             'kelas' => $KelasModel->findAll(),
             'jenisOrder' => $JenisOrderModel->findAll(),
             'kertas' => $KertasModel->findAll(),
-            'pasis' => $PasisModel->findAll(),
-            'idKelas' => $idKelas
+            'pasis' => $PasisModel->where('kelasId', $idKelas)->findAll(),
+            'idKelas' => $idKelas,
+            'ukuran' => $UkuranModel->findAll()
         ];
-        
+        d($data);
         echo view('templates/header');
         echo view('kelas/detail', $data);
         echo view('templates/footer');

@@ -25,19 +25,52 @@
         <tbody>
             <?php
             helper('fungsiku');
-            ?>
-            <tr onclick="window.open('','_self', 'location=yes,height=600,width=800,scrollbars=yes,status=yes');return false;">
 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> </td>
-                <td>
-                </td>
-            </tr>
+            foreach ($pasis as $nomor => $pasiss) :
+            ?>
+                <tr onclick="window.open('','_self', 'location=yes,height=600,width=800,scrollbars=yes,status=yes');return false;">
+
+                    <td><?= $nomor + 1; ?></td>
+                    <td><?= $pasiss['nama']; ?></td>
+                    <td><?= $pasiss['gender'] == 'P' ? 'Pria' : 'Wanita'; ?></td>
+                    <td><?php
+                        foreach ($ukuran as $ukurans) :
+                            echo $ukurans['pasisId'] == $pasiss['idPasis'] && $ukurans['jenisUkuranId'] == 4 ? $ukurans['ukuran'] : '';
+                        endforeach;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($ukuran as $ukurans) :
+                            echo $ukurans['pasisId'] == $pasiss['idPasis'] && $ukurans['jenisUkuranId'] == 5 ? $ukurans['ukuran'] : '';
+                        endforeach;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($ukuran as $ukurans) :
+                            echo $ukurans['pasisId'] == $pasiss['idPasis'] && $ukurans['jenisUkuranId'] == 3 ? $ukurans['ukuran'] : '';
+                        endforeach;
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        foreach ($ukuran as $ukurans) :
+                            echo $ukurans['pasisId'] == $pasiss['idPasis'] && $ukurans['jenisUkuranId'] == 1 ? $ukurans['ukuran'] : '';
+                        endforeach;
+                        ?><br>
+                        <?php
+                        foreach ($ukuran as $ukurans) :
+                            echo $ukurans['pasisId'] == $pasiss['idPasis'] && $ukurans['jenisUkuranId'] == 2 ? $ukurans['ukuran'] : '';
+                        endforeach;
+                        ?>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            <?php
+            endforeach;
+            ?>
         </tbody>
     </table>
 </div>
