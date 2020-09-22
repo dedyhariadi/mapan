@@ -16,7 +16,8 @@ echo script_tag('https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min
 //select 2
 echo script_tag('https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js');
 
-
+// sweetalert
+echo script_tag('assets/js/sweetalert2.all.min.js');
 
 
 

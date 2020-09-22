@@ -78,4 +78,17 @@ class Kelas extends BaseController
         echo view('kelas/detail', $data);
         echo view('templates/footer');
     }
+
+    public function hapuspasis($idPasis = '', $idKelas = '')
+    {
+        echo "Id Pasis adalah :" . $idPasis;
+        $PasisModel = new PasisModel();
+        $UkuranModel = new UkuranModel();
+
+        $PasisModel->delete($idPasis);
+        $UkuranModel->where('pasisId', $idPasis)->delete();
+        $this->session->setFlashdata('flash', 'dihapus');
+
+        return redirect()->to(base_url('kelas/detail') . '/' . $idKelas);
+    }
 }

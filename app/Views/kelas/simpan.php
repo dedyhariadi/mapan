@@ -219,6 +219,7 @@
             echo form_submit('mysubmit', 'Simpan !', ['class' => 'btn btn-primary']);
             ?>
         </div>
+
         <!-- akhir baris Tombol -->
 
         <?= form_close(); ?>

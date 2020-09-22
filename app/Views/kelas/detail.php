@@ -1,7 +1,18 @@
 <div class="container border shadow p-3 mb-5 mt-4 bg-white rounded">
+
+    <?php
+    if (isset($flashdata)) :
+    ?>
+        <div class="flash-data" data-flashdata="<?= $flashdata; ?>"></div>
+    <?php
+
+    endif;
+    ?>
     <h1 class="text-center">Detail kelas</h1>
     <h4 class="text-center">
         <?php
+
+
         foreach ($kelas as $kelass) :
             echo $kelass['idKelas'] == $idKelas ? $kelass['namaKelas'] : '';
         endforeach;
@@ -66,6 +77,24 @@
                         ?>
                     </td>
                     <td>
+                        <?php
+                        $gambarhapus = [
+                            'src'    => 'assets/img/hapus.jpg',
+                            'alt'    => 'hapus',
+                            'width'  => '20',
+                            'height' => '20'
+                        ];
+                        echo anchor(base_url('kelas/hapuspasis') . '/' . $pasiss['idPasis'] . '/' . $idKelas, img($gambarhapus), ['class' => 'tombol-hapus']);
+
+                        // $gambaredit = [
+                        //     'src'    => 'assets/img/edit.png',
+                        //     'alt'    => 'edit',
+                        //     'width'  => '20',
+                        //     'height' => '20'
+                        // ];
+                        // echo anchor_popup(base_url('transaksi/edit') . '/' . $mutasibarangs['id_mutasiBarang'], img($gambaredit), ['class' => 'edit']);
+
+                        ?>
                     </td>
                 </tr>
             <?php

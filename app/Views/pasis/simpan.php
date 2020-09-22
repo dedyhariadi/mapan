@@ -214,9 +214,15 @@
         </div>
         <div class="col-2">
         </div>
-        <div class="col-4 ml-0 px-0">
+        <div class="col-2 ml-0 px-0">
             <?php
             echo form_submit('mysubmit', 'Simpan !', ['class' => 'btn btn-primary']);
+            ?>
+        </div>
+        <div class="col-2 ml-0 px-0">
+            <?php
+
+            echo anchor(base_url('kelas/detail')  . '/' . $idKelas, 'Daftar Kelas', ['class' => 'btn btn-success']);
             ?>
         </div>
         <!-- akhir baris Tombol -->
